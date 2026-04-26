@@ -18,17 +18,17 @@ nav.active {display:flex;}
 }
 .hero {background:linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1581092160607-ee22731b3b2a');background-size:cover;color:#fff;text-align:center;padding:120px 20px;}
 .hero h2 {font-size:40px;margin-bottom:10px;}
-.btn {background:#ffd000;color:#000;padding:10px 20px;text-decoration:none;border-radius:5px;display:inline-block;margin-top:15px;}
+.btn {background:#ffd000;color:#000;padding:10px 20px;text-decoration:none;border-radius:5px;display:inline-block;margin-top:15px;cursor:pointer;border:none;font-size:14px;}
 .section {padding:60px 40px;}
 .section h2 {text-align:center;margin-bottom:30px;color:#0b3d91;}
 .grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
 .card {padding:20px;border:1px solid #ddd;border-radius:10px;transition: all 0.3s ease;cursor:pointer;}
-.card:hover {background:#0b3d91;color:#fff;transform: translateY(-10px) scale(1.03);box-shadow:0 10px 25px rgba(0,0,0,0.2);} 
+.card:hover {background:#0b3d91;color:#fff;transform: translateY(-10px) scale(1.03);box-shadow:0 10px 25px rgba(0,0,0,0.2);}
 .footer {background:#0b3d91;color:#fff;padding:30px;text-align:center;}
 .footer .social {margin-top:10px;}
 .footer .social a {display:inline-block;margin:0 8px;color:#fff;text-decoration:none;font-size:18px;transition:0.3s;}
-.footer .social a:hover {color:#ffd000;transform:translateY(-3px);} 
-.contact-form input, .contact-form textarea {width:100%;padding:10px;margin:10px 0;border:1px solid #ccc;border-radius:5px;}
+.footer .social a:hover {color:#ffd000;transform:translateY(-3px);}
+.contact-form input, .contact-form textarea {width:100%;padding:10px;margin:10px 0;border:1px solid #ccc;border-radius:5px;box-sizing:border-box;}
 
 /* Why Choose Us */
 .why-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
@@ -36,13 +36,15 @@ nav.active {display:flex;}
 .why-icon {font-size:30px;color:#ffd000;}
 
 /* Carousel */
-.carousel {position:relative;max-width:800px;margin:auto;overflow:hidden;}
+.carousel {position:relative;max-width:800px;margin:auto;overflow:hidden;border-radius:10px;}
 .carousel-track {display:flex;transition:transform 0.5s ease;}
 .testimonial {min-width:100%;padding:20px;text-align:center;}
 .testimonial img {width:80px;height:80px;border-radius:50%;margin-bottom:10px;}
+
+/* Dots — shared style, each carousel gets its own wrapper */
 .dots {text-align:center;margin-top:10px;}
 .dot {height:10px;width:10px;margin:0 5px;background:#bbb;border-radius:50%;display:inline-block;cursor:pointer;}
-.active {background:#0b3d91;}
+.dot.active {background:#0b3d91;}
 
 .stats {text-align:center;font-size:24px;color:#0b3d91;margin-top:20px;}
 </style>
@@ -66,50 +68,44 @@ nav.active {display:flex;}
 <section class="hero">
 <h2>Powering Industries with Smart Electrical Solutions</h2>
 <p>Electrical Products Supplier | Automation | Consulting</p>
-<a href="#contact" class="btn">Get a Quote</a>
+<a href="https://wa.me/919647150070" target="_blank" class="btn">Get a Quote</a>
 </section>
 
 <section class="section" id="about">
 <h2>About Us</h2>
 <div class="grid">
-<div class="card">
-<h3>Who We Are</h3>
-<p>Indian Automation is a trusted name in industrial electrical solutions, delivering high-quality products and expert consulting services across India. With strong industry experience, we help businesses optimize their electrical systems and automation processes.</p>
-</div>
-<div class="card">
-<h3>Our Mission</h3>
-<p>To provide reliable, efficient, and innovative electrical and automation solutions that empower industries to achieve higher productivity and sustainability.</p>
-</div>
-<div class="card">
-<h3>Our Vision</h3>
-<p>To become a leading electrical and automation solutions provider in India, known for quality, trust, and cutting-edge technology.</p>
-</div>
-<div class="card">
-<h3>Our Expertise</h3>
-<p>We specialize in industrial automation, control panel design, electrical consulting, and supply of premium products including authorized Polycab cables and components.</p>
-</div>
+<div class="card"><h3>Who We Are</h3><p>Indian Automation is a trusted name in industrial electrical solutions, delivering high-quality products and expert consulting services across India.</p></div>
+<div class="card"><h3>Our Mission</h3><p>To provide reliable, efficient, and innovative electrical and automation solutions that empower industries to achieve higher productivity and sustainability.</p></div>
+<div class="card"><h3>Our Vision</h3><p>To become a leading electrical and automation solutions provider in India, known for quality, trust, and cutting-edge technology.</p></div>
+<div class="card"><h3>Our Expertise</h3><p>We specialize in industrial automation, control panel design, electrical consulting, and supply of premium products including authorized Polycab cables and components.</p></div>
 </div>
 </section>
 
 <section class="section" id="products">
 <h2>Our Products</h2>
 <div class="grid">
-<div class="card" onclick="openProduct('wires')"><h3>Wires & Cables</h3><p>Premium quality Polycab wires and cables.</p></div>
-<div class="card" onclick="openProduct('switchgear')"><h3>Switchgear & Panels</h3><p>Reliable electrical panels and switchgear systems.</p></div>
-<div class="card" onclick="openProduct('automation')"><h3>Automation Products</h3><p>PLC, VFD, Sensors and more.</p></div>
+<div class="card" onclick="openProduct('wires')"><h3>Wires &amp; Cables</h3><p>Premium quality Polycab wires and cables.</p></div>
+<div class="card" onclick="openProduct('switchgear')"><h3>Switchgear &amp; Panels</h3><p>Reliable electrical panels and switchgear systems.</p></div>
+<div class="card" onclick="openProduct('automation')"><h3>Automation Products</h3><p>Water Level Controller, Motion detector, Sensors and more.</p></div>
 <div class="card" onclick="openProduct('components')"><h3>Electrical Components</h3><p>All industrial electrical components available.</p></div>
 </div>
 </section>
 
-<!-- Product Pages -->
+<!-- Product Detail Section -->
 <section class="section" id="productPage" style="display:none;">
-<h2 id="productTitle"></h2>
-<div class="carousel">
-<div class="carousel-track" id="productTrack"></div>
-</div>
-<div style="text-align:center;">
-<a href="#contact" class="btn">Get a Quote</a>
-</div>
+  <h2 id="productTitle"></h2>
+
+  <!-- Carousel -->
+  <div class="carousel">
+    <div class="carousel-track" id="productTrack"></div>
+  </div>
+
+  <!-- Dynamic dots for product carousel -->
+  <div class="dots" id="productDots"></div>
+
+  <div style="text-align:center;margin-top:20px;">
+    <a href="#contact" class="btn">Get a Quote</a>
+  </div>
 </section>
 
 <section class="section" id="services">
@@ -136,9 +132,9 @@ nav.active {display:flex;}
 <h2>Our Projects</h2>
 <div class="carousel">
 <div class="carousel-track" id="projectTrack">
-<div class="testimonial"><img src="https://images.unsplash.com/photo-1581092919534-3c0f1b1c1c1c" style="width:100%;height:250px;border-radius:10px;"><p>Industrial Control Panel Setup</p></div>
-<div class="testimonial"><img src="https://images.unsplash.com/photo-1581093588401-22f3c6b1d1d1" style="width:100%;height:250px;border-radius:10px;"><p>Factory Automation Project</p></div>
-<div class="testimonial"><img src="https://images.unsplash.com/photo-1581091012184-5c6c3c3b3b3b" style="width:100%;height:250px;border-radius:10px;"><p>Electrical Wiring Installation</p></div>
+<div class="testimonial"><img src="mission.jpg" style="width:100%;height:250px;border-radius:10px;object-fit:cover;"><p>Industrial Control Panel Setup</p></div>
+<div class="testimonial"><img src="images.jpg" style="width:100%;height:250px;border-radius:10px;object-fit:cover;"><p>Factory Automation Project</p></div>
+<div class="testimonial"><img src="panel2.jpg" style="width:100%;height:250px;border-radius:10px;object-fit:cover;"><p>Electrical Wiring Installation</p></div>
 </div>
 </div>
 <div class="dots">
@@ -149,15 +145,15 @@ nav.active {display:flex;}
 </section>
 
 <section class="section" id="clients">
-<h2>Clients & Testimonials</h2>
+<h2>Clients &amp; Testimonials</h2>
 <div class="carousel">
 <div class="carousel-track" id="track">
-<div class="testimonial"><img src="https://randomuser.me/api/portraits/men/1.jpg"><p>"Excellent service and top-quality products."</p><strong>- Industrial Client</strong></div>
+<div class="testimonial"><img src="ni.jpg"><p>"Excellent service and top-quality products."</p><strong>- Industrial Client</strong></div>
 <div class="testimonial"><img src="https://randomuser.me/api/portraits/women/2.jpg"><p>"Reliable automation solutions for our factory."</p><strong>- Factory Owner</strong></div>
 <div class="testimonial"><img src="https://randomuser.me/api/portraits/men/3.jpg"><p>"Professional consulting and fast support."</p><strong>- Engineer</strong></div>
 </div>
 </div>
-<div class="dots">
+<div class="dots" id="clientDots">
 <span class="dot active" onclick="moveSlide(0)"></span>
 <span class="dot" onclick="moveSlide(1)"></span>
 <span class="dot" onclick="moveSlide(2)"></span>
@@ -167,51 +163,30 @@ nav.active {display:flex;}
 <section class="section" id="careers">
 <h2>Careers</h2>
 <div class="grid">
-<div class="card">
-<h3>Electrical Engineer</h3>
-<p>Looking for skilled engineers with industrial experience.</p>
-<button class="btn" onclick="applyNow()">Apply Now</button>
-</div>
-<div class="card">
-<h3>Automation Specialist</h3>
-<p>Experience in PLC, VFD, and automation systems required.</p>
-<button class="btn" onclick="applyNow()">Apply Now</button>
-</div>
-<div class="card">
-<h3>Sales Executive</h3>
-<p>Responsible for client handling and product sales.</p>
-<button class="btn" onclick="applyNow()">Apply Now</button>
-</div>
+<div class="card"><h3>Electrical Engineer</h3><p>Looking for skilled engineers with industrial experience.</p><button class="btn" onclick="applyNow()">Apply Now</button></div>
+<div class="card"><h3>Automation Specialist</h3><p>Experience in PLC, VFD, and automation systems required.</p><button class="btn" onclick="applyNow()">Apply Now</button></div>
+<div class="card"><h3>Sales Executive</h3><p>Responsible for client handling and product sales.</p><button class="btn" onclick="applyNow()">Apply Now</button></div>
 </div>
 </section>
 
 <section class="section" id="contact">
 <h2>Contact Us</h2>
-
 <div class="grid">
-
 <div class="card">
 <h3>Our Office</h3>
-<p><strong>Address:</strong><br>
-Karmatirtha Apartment, Nimdighi, Uluberia (Near platform no 6)<br>
-Dist - Howrah, State - West Bengal</p>
-<p><strong>Email:</strong><br>
-indian1automation@gmail.com</p>
-<p><strong>Phone:</strong><br>
-9647150070</p>
+<p><strong>Address:</strong><br>Karmatirtha Apartment, Nimdighi, Uluberia (Near platform no 6)<br>Dist - Howrah, State - West Bengal</p>
+<p><strong>Email:</strong><br>indian1automation@gmail.com</p>
+<p><strong>Phone:</strong><br>9647150070</p>
 </div>
-
 <div>
 <form class="contact-form" action="mailto:unofficial.ubk@gmail.com" method="post" enctype="text/plain">
 <input type="text" name="name" placeholder="Your Name" required>
 <input type="email" name="email" placeholder="Your Email" required>
-<textarea name="message" placeholder="Your Message" required></textarea>
+<textarea name="message" placeholder="Your Message" rows="5" required></textarea>
 <button class="btn" type="submit">Send Inquiry</button>
 </form>
 </div>
-
 </div>
-
 </section>
 
 <footer class="footer">
@@ -225,104 +200,83 @@ indian1automation@gmail.com</p>
 </footer>
 
 <script>
-let index = 0;
-function moveSlide(i){
-  index = i;
-  document.getElementById('track').style.transform = 'translateX(' + (-i*100) + '%)';
-  document.querySelectorAll('.dot').forEach((d,idx)=>{
-    d.classList.toggle('active', idx===i);
-  });
+/* ── Testimonials carousel ── */
+let clientIndex = 0;
+function moveSlide(i) {
+  clientIndex = i;
+  document.getElementById('track').style.transform = 'translateX(' + (-i * 100) + '%)';
+  document.querySelectorAll('#clientDots .dot').forEach((d, idx) => d.classList.toggle('active', idx === i));
 }
-setInterval(()=>{
-  index = (index+1)%3;
-  moveSlide(index);
-},3000);
+setInterval(() => { clientIndex = (clientIndex + 1) % 3; moveSlide(clientIndex); }, 3000);
 
+/* ── Projects carousel ── */
 let projectIndex = 0;
-function moveProject(i){
+function moveProject(i) {
   projectIndex = i;
-  document.getElementById('projectTrack').style.transform = 'translateX(' + (-i*100) + '%)';
+  document.getElementById('projectTrack').style.transform = 'translateX(' + (-i * 100) + '%)';
 }
-setInterval(()=>{
-  projectIndex = (projectIndex+1)%3;
-  moveProject(projectIndex);
-},3500);
-function applyNow(){
+setInterval(() => { projectIndex = (projectIndex + 1) % 3; moveProject(projectIndex); }, 3500);
+
+/* ── Product carousel ── */
+let productIndex = 0;
+let productTotal = 0;
+let productTimer = null;
+
+function moveProduct(i) {
+  productIndex = i;
+  document.getElementById('productTrack').style.transform = 'translateX(' + (-i * 100) + '%)';
+  document.querySelectorAll('#productDots .dot').forEach((d, idx) => d.classList.toggle('active', idx === i));
+}
+
+function openProduct(type) {
+  /* Show section and scroll to it */
+  document.getElementById('productPage').style.display = 'block';
+  window.location = '#productPage';
+
+  /* Define product data */
+  const products = {
+    wires:      { title: 'Wires & Cables (Polycab)',   images: ['cable1.jpg', 'cable2.jpg'] },
+    switchgear: { title: 'Switchgear & Panels',         images: ['sg.jpg', 'panel.jpg', 'panel2.jpg'] },
+    automation: { title: 'Automation Products',          images: ['wlc.jpg', 'sensor.jpg'] },
+    components: { title: 'Electrical Components',        images: ['poly1.jpg', 'poly2.jpg'] }
+  };
+
+  const product = products[type];
+  productTotal = product.images.length;
+  productIndex = 0;
+
+  /* Set title */
+  document.getElementById('productTitle').innerText = product.title;
+
+  /* Build slides */
+  document.getElementById('productTrack').innerHTML = product.images
+    .map(img => `<div class="testimonial"><img src="${img}" style="width:100%;height:300px;border-radius:10px;object-fit:cover;"></div>`)
+    .join('');
+
+  /* Reset track position */
+  document.getElementById('productTrack').style.transform = 'translateX(0%)';
+
+  /* Build dots dynamically */
+  document.getElementById('productDots').innerHTML = product.images
+    .map((_, i) => `<span class="dot${i === 0 ? ' active' : ''}" onclick="moveProduct(${i})"></span>`)
+    .join('');
+
+  /* Clear any previous timer and start a new one */
+  if (productTimer) clearInterval(productTimer);
+  if (productTotal > 1) {
+    productTimer = setInterval(() => {
+      productIndex = (productIndex + 1) % productTotal;
+      moveProduct(productIndex);
+    }, 2500);
+  }
+}
+
+/* ── Misc ── */
+function applyNow() {
   window.location.href = "mailto:unofficial.ubk@gmail.com?subject=Job Application - Indian Automation";
 }
-function toggleMenu(){
+function toggleMenu() {
   document.getElementById('navMenu').classList.toggle('active');
-}
-
-function openProduct(type){
-  document.getElementById('productPage').style.display='block';
-  window.location='#productPage';
-
-  let title='';
-  let images=[];
-
-  if(type==='wires'){
-    title='Wires & Cables (Polycab)';
-    images=[
-      'cable1.jpg',
-      'cable2.jpg'
-    ];
-  }
-  else if(type==='switchgear'){
-    title='Switchgear & Panels';
-    images=[
-      'sg.jpg',
-      'panel.jpg',
-      'panel2.jpg'
-    ];
-  }
-  else if(type==='automation'){
-    title='Automation Products';
-    images=[
-      'wlc.jpg',
-      'sensor.jpg'
-    ];
-  }
-  else{
-    title='Electrical Components';
-    images=[
-      'poly1.jpg',
-      'poly2.jpg'
-    ];
-  }
-
-  document.getElementById('productTitle').innerText=title;
-
-  let html='';
-  images.forEach(img=>{
-    html+=`<div class="testimonial"><img src="${img}" style="width:100%;height:300px;border-radius:10px;"></div>`;
-  });
-
-  // render all images & reset carousel based on total images
-  const track = document.getElementById('productTrack');
-  track.innerHTML = html;
-  window.productTotal = images.length; // dynamic count
-  productIndex = 0;
-  track.style.transform = 'translateX(0%)';
-}
-
-  document.getElementById('productTrack').innerHTML=html;
-
-  // reset and auto carousel
-  productIndex = 0;
-  document.getElementById('productTrack').style.transform = 'translateX(0%)';
-}
-
-// auto slide for product images
-setInterval(()=>{
-  const track = document.getElementById('productTrack');
-  if(!track) return;
-  const total = track.children.length;
-  if(total === 0) return;
-
-  projectIndex = (projectIndex + 1) % total;
-  track.style.transform = 'translateX(' + (-projectIndex*100) + '%)';
-},3000);
 }
 </script>
 

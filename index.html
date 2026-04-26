@@ -29,23 +29,16 @@ nav.active {display:flex;}
 .footer .social a {display:inline-block;margin:0 8px;color:#fff;text-decoration:none;font-size:18px;transition:0.3s;}
 .footer .social a:hover {color:#ffd000;transform:translateY(-3px);}
 .contact-form input, .contact-form textarea {width:100%;padding:10px;margin:10px 0;border:1px solid #ccc;border-radius:5px;box-sizing:border-box;}
-
-/* Why Choose Us */
 .why-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
 .why-item {display:flex;align-items:center;gap:15px;padding:15px;border:1px solid #ddd;border-radius:10px;}
 .why-icon {font-size:30px;color:#ffd000;}
-
-/* Carousel */
 .carousel {position:relative;max-width:800px;margin:auto;overflow:hidden;border-radius:10px;}
 .carousel-track {display:flex;transition:transform 0.5s ease;}
 .testimonial {min-width:100%;padding:20px;text-align:center;}
 .testimonial img {width:80px;height:80px;border-radius:50%;margin-bottom:10px;}
-
-/* Dots — shared style, each carousel gets its own wrapper */
 .dots {text-align:center;margin-top:10px;}
 .dot {height:10px;width:10px;margin:0 5px;background:#bbb;border-radius:50%;display:inline-block;cursor:pointer;}
 .dot.active {background:#0b3d91;}
-
 .stats {text-align:center;font-size:24px;color:#0b3d91;margin-top:20px;}
 </style>
 </head>
@@ -68,7 +61,7 @@ nav.active {display:flex;}
 <section class="hero">
 <h2>Powering Industries with Smart Electrical Solutions</h2>
 <p>Electrical Products Supplier | Automation | Consulting</p>
-<a href="#contact" class="btn">Get a Quote</a>
+<button class="btn" onclick="getQuote('General Enquiry')">Get a Quote</button>
 </section>
 
 <section class="section" id="about">
@@ -94,17 +87,12 @@ nav.active {display:flex;}
 <!-- Product Detail Section -->
 <section class="section" id="productPage" style="display:none;">
   <h2 id="productTitle"></h2>
-
-  <!-- Carousel -->
   <div class="carousel">
     <div class="carousel-track" id="productTrack"></div>
   </div>
-
-  <!-- Dynamic dots for product carousel -->
   <div class="dots" id="productDots"></div>
-
   <div style="text-align:center;margin-top:20px;">
-    <a href="#contact" class="btn">Get a Quote</a>
+    <button class="btn" id="productQuoteBtn" onclick="getQuote(document.getElementById('productTitle').innerText)">Get a Quote</button>
   </div>
 </section>
 
@@ -113,7 +101,7 @@ nav.active {display:flex;}
 <div class="grid">
 <div class="card"><h3>Automation Solutions</h3><p>Custom industrial automation systems.</p></div>
 <div class="card"><h3>Consulting</h3><p>Electrical design, load calculation, and efficiency solutions.</p></div>
-<div class="card"><h3>Pan India Service</h3><p>We serve clients all across India.</p></div>
+<div class="card"><h3>Pan India Product & Service Provider </h3><p>We serve clients all across India.</p></div>
 </div>
 </section>
 
@@ -149,8 +137,8 @@ nav.active {display:flex;}
 <div class="carousel">
 <div class="carousel-track" id="track">
 <div class="testimonial"><img src="ni.jpg"><p>"Excellent service and top-quality products."</p><strong>- Industrial Client</strong></div>
-<div class="testimonial"><img src="https://randomuser.me/api/portraits/women/2.jpg"><p>"Reliable automation solutions for our factory."</p><strong>- Factory Owner</strong></div>
-<div class="testimonial"><img src="https://randomuser.me/api/portraits/men/3.jpg"><p>"Professional consulting and fast support."</p><strong>- Engineer</strong></div>
+<div class="testimonial"><img src="ip.jpg"><p>"Reliable automation solutions for our factory."</p><strong>- Factory Owner</strong></div>
+<div class="testimonial"><img src="ajijul.jpg"><p>"Professional consulting and fast support."</p><strong>- Engineer</strong></div>
 </div>
 </div>
 <div class="dots" id="clientDots">
@@ -164,8 +152,9 @@ nav.active {display:flex;}
 <h2>Careers</h2>
 <div class="grid">
 <div class="card"><h3>Electrical Engineer</h3><p>Looking for skilled engineers with industrial experience.</p><button class="btn" onclick="applyNow('Electrical Engineer')">Apply Now</button></div>
-<div class="card"><h3>Automation Specialist</h3><p>Experience in PLC, VFD, and automation systems required.</p><button class="btn" onclick="applyNow('Automation Specialist')">Apply Now</button></div>
+<div class="card"><h3>Automation Specialist</h3><p>Experience in Water Level Controller, Motion detector, Sensors and automation systems required.</p><button class="btn" onclick="applyNow('Automation Specialist')">Apply Now</button></div>
 <div class="card"><h3>Sales Executive</h3><p>Responsible for client handling and product sales.</p><button class="btn" onclick="applyNow('Sales Executive')">Apply Now</button></div>
+<div class="card"><h3>Electrician / Technician</h3><p>Hands-on experience in electrical wiring and field installation required.</p><button class="btn" onclick="applyNow('Electrician / Technician')">Apply Now</button></div>
 </div>
 </section>
 
@@ -183,14 +172,14 @@ nav.active {display:flex;}
 <input type="text" id="cName" placeholder="Your Name" required>
 <input type="email" id="cEmail" placeholder="Your Email" required>
 <textarea id="cMessage" placeholder="Your Message" rows="5" required></textarea>
-<button class="btn" onclick="sendInquiry()">Send Inquiry</button>
+<button class="btn" onclick="sendInquiry()">Send Query</button>
 </div>
 </div>
 </div>
 </section>
 
 <footer class="footer">
-<p>© 2026 Indian Automation | All Rights Reserved</p>
+<p>&copy; 2026 Indian Automation | All Rights Reserved</p>
 <div class="social">
 <a href="https://www.facebook.com" target="_blank">🌐 Facebook</a>
 <a href="https://www.instagram.com" target="_blank">📸 Instagram</a>
@@ -200,6 +189,23 @@ nav.active {display:flex;}
 </footer>
 
 <script>
+const WA_NUMBER = '919647150070';
+
+/* ── WhatsApp helpers ── */
+function getQuote(productName) {
+  const msg = 'Hi,\nPlease give me a quotation for\nProduct Name - ' + productName;
+  window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
+}
+
+function sendInquiry() {
+  const name    = document.getElementById('cName').value.trim();
+  const email   = document.getElementById('cEmail').value.trim();
+  const message = document.getElementById('cMessage').value.trim();
+  if (!name || !message) { alert('Please fill in your name and message.'); return; }
+  const msg = 'Hi, I have an enquiry.\n\nName    - ' + name + '\nEmail   - ' + email + '\nMessage - ' + message;
+  window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
+}
+
 /* ── Testimonials carousel ── */
 let clientIndex = 0;
 function moveSlide(i) {
@@ -229,39 +235,32 @@ function moveProduct(i) {
 }
 
 function openProduct(type) {
-  /* Show section and scroll to it */
   document.getElementById('productPage').style.display = 'block';
   window.location = '#productPage';
 
-  /* Define product data */
   const products = {
-    wires:      { title: 'Wires & Cables (Polycab)',   images: ['cable1.jpg', 'cable2.jpg'] },
-    switchgear: { title: 'Switchgear & Panels',         images: ['sg.jpg', 'panel.jpg', 'panel2.jpg'] },
-    automation: { title: 'Automation Products',          images: ['wlc.jpg', 'sensor.jpg'] },
-    components: { title: 'Electrical Components',        images: ['poly1.jpg', 'poly2.jpg'] }
+    wires:      { title: 'Wires & Cables (Polycab)',  images: ['cable1.jpg', 'cable2.jpg'] },
+    switchgear: { title: 'Switchgear & Panels',        images: ['sg.jpg', 'panel.jpg', 'panel2.jpg'] },
+    automation: { title: 'Automation Products',         images: ['wlc.jpg', 'sensor.jpg'] },
+    components: { title: 'Electrical Components',       images: ['poly1.jpg', 'poly2.jpg'] }
   };
 
   const product = products[type];
   productTotal = product.images.length;
   productIndex = 0;
 
-  /* Set title */
   document.getElementById('productTitle').innerText = product.title;
 
-  /* Build slides */
   document.getElementById('productTrack').innerHTML = product.images
-    .map(img => `<div class="testimonial"><img src="${img}" style="width:100%;height:300px;border-radius:10px;object-fit:cover;"></div>`)
+    .map(img => '<div class="testimonial"><img src="' + img + '" style="width:100%;height:300px;border-radius:10px;object-fit:cover;"></div>')
     .join('');
 
-  /* Reset track position */
   document.getElementById('productTrack').style.transform = 'translateX(0%)';
 
-  /* Build dots dynamically */
   document.getElementById('productDots').innerHTML = product.images
-    .map((_, i) => `<span class="dot${i === 0 ? ' active' : ''}" onclick="moveProduct(${i})"></span>`)
+    .map((_, i) => '<span class="dot' + (i === 0 ? ' active' : '') + '" onclick="moveProduct(' + i + ')"></span>')
     .join('');
 
-  /* Clear any previous timer and start a new one */
   if (productTimer) clearInterval(productTimer);
   if (productTotal > 1) {
     productTimer = setInterval(() => {
@@ -271,28 +270,19 @@ function openProduct(type) {
   }
 }
 
-/* ── Misc ── */
+/* ── Apply Now ── */
 function applyNow(position) {
   const subject = encodeURIComponent('Job Application - ' + position);
   const body = encodeURIComponent(
     'Hi,\n\nI would like to apply for the above position.\n\n' +
-    'Name       - \n' +
-    'Ph         - \n' +
-    'Address    - \n' +
+    'Name            - \n' +
+    'Ph              - \n' +
+    'Address         - \n' +
+    'Experience         - \n' +
     'Current Salary  - \n' +
-    'Expected Salary - \n\n' +
+    'Expected Salary - \n\n\n' +
     'Thanks & Regards'
   );
-  window.location.href = 'mailto:indian1automation@gmail.com?subject=' + subject + '&body=' + body;
-}
-
-function sendInquiry() {
-  const name    = document.getElementById('cName').value.trim();
-  const email   = document.getElementById('cEmail').value.trim();
-  const message = document.getElementById('cMessage').value.trim();
-  if (!name || !email || !message) { alert('Please fill in all fields.'); return; }
-  const subject = encodeURIComponent('Website Inquiry from ' + name);
-  const body    = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
   window.location.href = 'mailto:indian1automation@gmail.com?subject=' + subject + '&body=' + body;
 }
 

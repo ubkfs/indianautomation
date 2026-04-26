@@ -96,7 +96,7 @@ nav.active {display:flex;}
 <div class="grid">
 <div class="card" onclick="openProduct('wires')"><h3>Wires & Cables</h3><p>Premium quality Polycab wires and cables.</p></div>
 <div class="card" onclick="openProduct('switchgear')"><h3>Switchgear & Panels</h3><p>Reliable electrical panels and switchgear systems.</p></div>
-<div class="card" onclick="openProduct('automation')"><h3>Automation Products</h3><p>Water Level Controller, Motion detector, Sensors and more.</p></div>
+<div class="card" onclick="openProduct('automation')"><h3>Automation Products</h3><p>PLC, VFD, Sensors and more.</p></div>
 <div class="card" onclick="openProduct('components')"><h3>Electrical Components</h3><p>All industrial electrical components available.</p></div>
 </div>
 </section>
@@ -136,9 +136,9 @@ nav.active {display:flex;}
 <h2>Our Projects</h2>
 <div class="carousel">
 <div class="carousel-track" id="projectTrack">
-<div class="testimonial"><img src="mission.jpg" style="width:100%;height:250px;border-radius:10px;"><p>Industrial Control Panel Setup</p></div>
-<div class="testimonial"><img src="images.jpg" style="width:100%;height:250px;border-radius:10px;"><p>Factory Automation Project</p></div>
-<div class="testimonial"><img src="panel2.jpg" style="width:100%;height:250px;border-radius:10px;"><p>Electrical Wiring Installation</p></div>
+<div class="testimonial"><img src="https://images.unsplash.com/photo-1581092919534-3c0f1b1c1c1c" style="width:100%;height:250px;border-radius:10px;"><p>Industrial Control Panel Setup</p></div>
+<div class="testimonial"><img src="https://images.unsplash.com/photo-1581093588401-22f3c6b1d1d1" style="width:100%;height:250px;border-radius:10px;"><p>Factory Automation Project</p></div>
+<div class="testimonial"><img src="https://images.unsplash.com/photo-1581091012184-5c6c3c3b3b3b" style="width:100%;height:250px;border-radius:10px;"><p>Electrical Wiring Installation</p></div>
 </div>
 </div>
 <div class="dots">
@@ -152,7 +152,7 @@ nav.active {display:flex;}
 <h2>Clients & Testimonials</h2>
 <div class="carousel">
 <div class="carousel-track" id="track">
-<div class="testimonial"><img src="ni.jpg"><p>"Excellent service and top-quality products."</p><strong>- Industrial Client</strong></div>
+<div class="testimonial"><img src="https://randomuser.me/api/portraits/men/1.jpg"><p>"Excellent service and top-quality products."</p><strong>- Industrial Client</strong></div>
 <div class="testimonial"><img src="https://randomuser.me/api/portraits/women/2.jpg"><p>"Reliable automation solutions for our factory."</p><strong>- Factory Owner</strong></div>
 <div class="testimonial"><img src="https://randomuser.me/api/portraits/men/3.jpg"><p>"Professional consulting and fast support."</p><strong>- Engineer</strong></div>
 </div>
@@ -298,7 +298,31 @@ function openProduct(type){
     html+=`<div class="testimonial"><img src="${img}" style="width:100%;height:300px;border-radius:10px;"></div>`;
   });
 
+  // render all images & reset carousel based on total images
+  const track = document.getElementById('productTrack');
+  track.innerHTML = html;
+  window.productTotal = images.length; // dynamic count
+  productIndex = 0;
+  track.style.transform = 'translateX(0%)';
+}
+
   document.getElementById('productTrack').innerHTML=html;
+
+  // reset and auto carousel
+  productIndex = 0;
+  document.getElementById('productTrack').style.transform = 'translateX(0%)';
+}
+
+// auto slide for product images
+setInterval(()=>{
+  const track = document.getElementById('productTrack');
+  if(!track) return;
+  const total = track.children.length;
+  if(total === 0) return;
+
+  projectIndex = (projectIndex + 1) % total;
+  track.style.transform = 'translateX(' + (-projectIndex*100) + '%)';
+},3000);
 }
 </script>
 

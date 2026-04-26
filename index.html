@@ -68,7 +68,7 @@ nav.active {display:flex;}
 <section class="hero">
 <h2>Powering Industries with Smart Electrical Solutions</h2>
 <p>Electrical Products Supplier | Automation | Consulting</p>
-<a href="https://wa.me/919647150070" target="_blank" class="btn">Get a Quote</a>
+<a href="#contact" class="btn">Get a Quote</a>
 </section>
 
 <section class="section" id="about">
@@ -163,9 +163,9 @@ nav.active {display:flex;}
 <section class="section" id="careers">
 <h2>Careers</h2>
 <div class="grid">
-<div class="card"><h3>Electrical Engineer</h3><p>Looking for skilled engineers with industrial experience.</p><button class="btn" onclick="applyNow()">Apply Now</button></div>
-<div class="card"><h3>Automation Specialist</h3><p>Experience in PLC, VFD, and automation systems required.</p><button class="btn" onclick="applyNow()">Apply Now</button></div>
-<div class="card"><h3>Sales Executive</h3><p>Responsible for client handling and product sales.</p><button class="btn" onclick="applyNow()">Apply Now</button></div>
+<div class="card"><h3>Electrical Engineer</h3><p>Looking for skilled engineers with industrial experience.</p><button class="btn" onclick="applyNow('Electrical Engineer')">Apply Now</button></div>
+<div class="card"><h3>Automation Specialist</h3><p>Experience in PLC, VFD, and automation systems required.</p><button class="btn" onclick="applyNow('Automation Specialist')">Apply Now</button></div>
+<div class="card"><h3>Sales Executive</h3><p>Responsible for client handling and product sales.</p><button class="btn" onclick="applyNow('Sales Executive')">Apply Now</button></div>
 </div>
 </section>
 
@@ -179,12 +179,12 @@ nav.active {display:flex;}
 <p><strong>Phone:</strong><br>9647150070</p>
 </div>
 <div>
-<form class="contact-form" action="mailto:unofficial.ubk@gmail.com" method="post" enctype="text/plain">
-<input type="text" name="name" placeholder="Your Name" required>
-<input type="email" name="email" placeholder="Your Email" required>
-<textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-<button class="btn" type="submit">Send Inquiry</button>
-</form>
+<div class="contact-form">
+<input type="text" id="cName" placeholder="Your Name" required>
+<input type="email" id="cEmail" placeholder="Your Email" required>
+<textarea id="cMessage" placeholder="Your Message" rows="5" required></textarea>
+<button class="btn" onclick="sendInquiry()">Send Inquiry</button>
+</div>
 </div>
 </div>
 </section>
@@ -272,9 +272,30 @@ function openProduct(type) {
 }
 
 /* ── Misc ── */
-function applyNow() {
-  window.location.href = "mailto:unofficial.ubk@gmail.com?subject=Job Application - Indian Automation";
+function applyNow(position) {
+  const subject = encodeURIComponent('Job Application - ' + position);
+  const body = encodeURIComponent(
+    'Hi,\n\nI would like to apply for the above position.\n\n' +
+    'Name       - \n' +
+    'Ph         - \n' +
+    'Address    - \n' +
+    'Current Salary  - \n' +
+    'Expected Salary - \n\n' +
+    'Thanks & Regards'
+  );
+  window.location.href = 'mailto:indian1automation@gmail.com?subject=' + subject + '&body=' + body;
 }
+
+function sendInquiry() {
+  const name    = document.getElementById('cName').value.trim();
+  const email   = document.getElementById('cEmail').value.trim();
+  const message = document.getElementById('cMessage').value.trim();
+  if (!name || !email || !message) { alert('Please fill in all fields.'); return; }
+  const subject = encodeURIComponent('Website Inquiry from ' + name);
+  const body    = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
+  window.location.href = 'mailto:indian1automation@gmail.com?subject=' + subject + '&body=' + body;
+}
+
 function toggleMenu() {
   document.getElementById('navMenu').classList.toggle('active');
 }

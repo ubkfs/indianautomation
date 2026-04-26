@@ -273,7 +273,73 @@ nav.active{display:flex;}
 <div class="stats">100+ Happy Clients | Serving Kolkata, Howrah &amp; Pan India</div>
 </section>
 
-<!-- SEO KEYWORD-RICH CONTENT SECTION -->
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+<h2>Our Projects</h2>
+<div class="carousel">
+<div class="carousel-track" id="projectTrack">
+<div class="testimonial"><img src="mission.jpg" alt="Industrial Control Panel Setup by Indian Automation Howrah" style="width:100%;height:250px;border-radius:10px;object-fit:cover;"><p>Industrial Control Panel Setup – Howrah</p></div>
+<div class="testimonial"><img src="images.jpg" alt="Factory Automation Project West Bengal" style="width:100%;height:250px;border-radius:10px;object-fit:cover;"><p>Factory Automation Project – West Bengal</p></div>
+<div class="testimonial"><img src="panel2.jpg" alt="Electrical Wiring Installation Kolkata" style="width:100%;height:250px;border-radius:10px;object-fit:cover;"><p>Electrical Wiring Installation – Kolkata</p></div>
+</div>
+</div>
+<div class="dots">
+<span class="dot active" onclick="moveProject(0)"></span>
+<span class="dot" onclick="moveProject(1)"></span>
+<span class="dot" onclick="moveProject(2)"></span>
+</div>
+</section>
+
+<!-- CLIENTS -->
+<section class="section" id="clients">
+<h2>Clients &amp; Testimonials</h2>
+<div class="carousel">
+<div class="carousel-track" id="track">
+<div class="testimonial"><img src="ni.jpg" alt="Industrial client testimonial"><p>"Excellent service and genuine Polycab products at best price."</p><strong>– Industrial Client, Howrah</strong></div>
+<div class="testimonial"><img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Factory owner testimonial"><p>"Reliable automation solutions and on-time delivery for our factory."</p><strong>– Factory Owner, West Bengal</strong></div>
+<div class="testimonial"><img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Electrical engineer testimonial"><p>"Professional electrical consultancy and fast WhatsApp support."</p><strong>– Electrical Engineer, Kolkata</strong></div>
+</div>
+</div>
+<div class="dots" id="clientDots">
+<span class="dot active" onclick="moveSlide(0)"></span>
+<span class="dot" onclick="moveSlide(1)"></span>
+<span class="dot" onclick="moveSlide(2)"></span>
+</div>
+</section>
+
+  <!-- CONTACT -->
+<section class="section" id="contact">
+<h2>Contact Us – Polycab Dealer &amp; Electrical Contractors, Howrah</h2>
+ 
+<!-- Owner profile -->
+<div style="text-align:center;margin-bottom:40px;">
+  <img src="owner.jpg" alt="Owner – Indian Automation, Authorized Polycab Dealer Howrah"
+    style="width:150px;height:150px;border-radius:50%;object-fit:cover;border:4px solid #0b3d91;box-shadow:0 4px 16px rgba(11,61,145,0.2);">
+  <p style="margin:12px 0 2px;font-size:18px;font-weight:bold;color:#0b3d91;">Owner – Indian Automation</p>
+  <p style="margin:0;color:#666;font-size:14px;">Authorized Polycab Dealer | Electrical Consultant | Howrah, West Bengal</p>
+</div>
+
+<div class="grid">
+<div class="card">
+<h3>Our Office</h3>
+<p><strong>Address:</strong><br>Karmatirtha Apartment, Nimdighi, Uluberia<br>(Near Platform No 6)<br>Dist – Howrah, West Bengal</p>
+<p><strong>Email:</strong><br>indian1automation@gmail.com</p>
+<p><strong>Phone / WhatsApp:</strong><br><a href="tel:+919647150070" style="color:#0b3d91;font-weight:bold;">9647150070</a></p>
+<p style="margin-top:12px;"><button class="btn" onclick="getQuote('General Enquiry')">💬 Chat on WhatsApp</button></p>
+</div>
+<div>
+<div class="contact-form">
+<input type="text" id="cName" placeholder="Your Name" required>
+<input type="email" id="cEmail" placeholder="Your Email">
+<textarea id="cMessage" placeholder="Your Message (e.g. I need Polycab 2.5mm price list)" rows="5" required></textarea>
+<button class="btn" onclick="sendInquiry()">Send Query on WhatsApp</button>
+</div>
+</div>
+</div>
+</section>
+
+  <!-- SEO KEYWORD-RICH CONTENT SECTION -->
 <section class="seo-section" id="polycab-info">
 <h2>Polycab Wire Price List 2026 – Get Latest Rates from Authorized Dealer in Kolkata</h2>
 <p>
@@ -333,40 +399,6 @@ We are also listed as one of the top <strong>electrical product wholesalers near
 </div>
 </section>
 
-<!-- PROJECTS -->
-<section class="section" id="projects">
-<h2>Our Projects</h2>
-<div class="carousel">
-<div class="carousel-track" id="projectTrack">
-<div class="testimonial"><img src="mission.jpg" alt="Industrial Control Panel Setup by Indian Automation Howrah" style="width:100%;height:250px;border-radius:10px;object-fit:cover;"><p>Industrial Control Panel Setup – Howrah</p></div>
-<div class="testimonial"><img src="images.jpg" alt="Factory Automation Project West Bengal" style="width:100%;height:250px;border-radius:10px;object-fit:cover;"><p>Factory Automation Project – West Bengal</p></div>
-<div class="testimonial"><img src="panel2.jpg" alt="Electrical Wiring Installation Kolkata" style="width:100%;height:250px;border-radius:10px;object-fit:cover;"><p>Electrical Wiring Installation – Kolkata</p></div>
-</div>
-</div>
-<div class="dots">
-<span class="dot active" onclick="moveProject(0)"></span>
-<span class="dot" onclick="moveProject(1)"></span>
-<span class="dot" onclick="moveProject(2)"></span>
-</div>
-</section>
-
-<!-- CLIENTS -->
-<section class="section" id="clients">
-<h2>Clients &amp; Testimonials</h2>
-<div class="carousel">
-<div class="carousel-track" id="track">
-<div class="testimonial"><img src="ni.jpg" alt="Industrial client testimonial"><p>"Excellent service and genuine Polycab products at best price."</p><strong>– Industrial Client, Howrah</strong></div>
-<div class="testimonial"><img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Factory owner testimonial"><p>"Reliable automation solutions and on-time delivery for our factory."</p><strong>– Factory Owner, West Bengal</strong></div>
-<div class="testimonial"><img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Electrical engineer testimonial"><p>"Professional electrical consultancy and fast WhatsApp support."</p><strong>– Electrical Engineer, Kolkata</strong></div>
-</div>
-</div>
-<div class="dots" id="clientDots">
-<span class="dot active" onclick="moveSlide(0)"></span>
-<span class="dot" onclick="moveSlide(1)"></span>
-<span class="dot" onclick="moveSlide(2)"></span>
-</div>
-</section>
-
 <!-- FAQ -->
 <section class="section" id="faq" style="background:#f9f9f9;">
 <h2>Frequently Asked Questions – Polycab Dealer &amp; Electrical Services</h2>
@@ -389,27 +421,7 @@ We are also listed as one of the top <strong>electrical product wholesalers near
 </div>
 </section>
 
-<!-- CONTACT -->
-<section class="section" id="contact">
-<h2>Contact Us – Polycab Dealer &amp; Electrical Contractors, Howrah</h2>
-<div class="grid">
-<div class="card">
-<h3>Our Office</h3>
-<p><strong>Address:</strong><br>Karmatirtha Apartment, Nimdighi, Uluberia<br>(Near Platform No 6)<br>Dist – Howrah, West Bengal</p>
-<p><strong>Email:</strong><br>indian1automation@gmail.com</p>
-<p><strong>Phone / WhatsApp:</strong><br><a href="tel:+919647150070" style="color:#0b3d91;font-weight:bold;">9647150070</a></p>
-<p style="margin-top:12px;"><button class="btn" onclick="getQuote('General Enquiry')">💬 Chat on WhatsApp</button></p>
-</div>
-<div>
-<div class="contact-form">
-<input type="text" id="cName" placeholder="Your Name" required>
-<input type="email" id="cEmail" placeholder="Your Email">
-<textarea id="cMessage" placeholder="Your Message (e.g. I need Polycab 2.5mm price list)" rows="5" required></textarea>
-<button class="btn" onclick="sendInquiry()">Send Query on WhatsApp</button>
-</div>
-</div>
-</div>
-</section>
+  
 
 <footer class="footer">
 <p>© 2026 Indian Automation | Authorized Polycab Dealer – Howrah, Kolkata, West Bengal | All Rights Reserved</p>

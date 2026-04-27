@@ -177,6 +177,22 @@ nav a:hover{color:#ffd000;}
 /* STATS */
 .stats{text-align:center;font-size:22px;color:#0b3d91;margin-top:20px;font-weight:bold;}
 
+/* SEARCH RESULTS DROPDOWN */
+#searchResults{display:none;max-width:640px;margin:6px auto 0;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.2);}
+.sr-item{padding:11px 16px;color:#222;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:10px;border-bottom:1px solid #f0f0f0;transition:background 0.15s;}
+.sr-item:last-child{border-bottom:none;}
+.sr-item:hover{background:#f0f4ff;}
+.sr-item .sr-icon{font-size:18px;flex-shrink:0;}
+.sr-item .sr-label{font-weight:bold;color:#0b3d91;}
+.sr-item .sr-desc{font-size:12px;color:#888;margin-top:1px;}
+.sr-none{padding:12px 16px;color:#888;font-size:13px;text-align:center;}
+.sr-multi-arrow{background:#0b3d91;color:#ffd000;padding:10px 16px;font-size:13px;font-weight:bold;text-align:center;cursor:pointer;transition:background 0.2s;}
+.sr-multi-arrow:hover{background:#1565c0;}
+
+/* SECTION HIGHLIGHT FLASH */
+.section-highlight{animation:sectionFlash 2s ease;}
+@keyframes sectionFlash{0%{box-shadow:0 0 0 0 rgba(11,61,145,0);}20%{box-shadow:0 0 0 8px rgba(11,61,145,0.25);}100%{box-shadow:0 0 0 0 rgba(11,61,145,0);}}
+
 /* PRODUCT PAGE */
 #productPage{background:#f8faff;}
 .prod-info-box{max-width:800px;margin:20px auto 0;background:#fff;border:1px solid #ddd;border-radius:10px;padding:20px;font-size:14px;line-height:1.7;color:#444;}
@@ -204,7 +220,8 @@ nav a:hover{color:#ffd000;}
     <a href="#contact" id="navContact">Contact</a>
   </nav>
   <div id="searchBox">
-    <input id="searchInput" type="text" placeholder="Search e.g. Polycab 2.5mm, automation, careers…">
+    <input id="searchInput" type="text" placeholder="Search e.g. Polycab 2.5mm, automation, careers…" autocomplete="off">
+    <div id="searchResults"></div>
   </div>
 </header>
 
@@ -300,8 +317,8 @@ nav a:hover{color:#ffd000;}
     <div class="counter-box"><span class="counter-num" data-target="105" data-suffix="+">105+</span><span class="counter-label">Happy Clients</span></div>
     <div class="counter-box"><span class="counter-num" data-target="35" data-suffix="+">35+</span><span class="counter-label">Years Experience</span></div>
     <div class="counter-box"><span class="counter-num" data-target="3" data-prefix="₹" data-suffix=" Cr+">3 Cr+</span><span class="counter-label">Annual Turnover</span></div>
-    <div class="counter-box"><span class="counter-num" data-target="50" data-suffix="+">50</span><span class="counter-label">Cities Served</span></div>
-    <div class="counter-box"><span class="counter-num" data-target="1000" data-suffix="+">1000</span><span class="counter-label">Genuine Products</span></div>
+    <div class="counter-box"><span class="counter-num" data-target="50" data-suffix="+">50+</span><span class="counter-label">Cities Served</span></div>
+    <div class="counter-box"><span class="counter-num" data-target="1000" data-suffix="+">100+</span><span class="counter-label">Dedicated Smart Technicians</span></div>
   </div>
 </section>
 
@@ -505,7 +522,10 @@ nav a:hover{color:#ffd000;}
         <span class="ch-status"><span class="sdot"></span> Online · replies instantly</span>
       </div>
     </div>
-    <button class="ch-close" id="chatCloseBtn">✕</button>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <button id="chatRestartBtn" title="Start over" style="background:rgba(255,255,255,0.18);border:none;color:#fff;border-radius:6px;padding:4px 9px;font-size:11px;cursor:pointer;white-space:nowrap;">🔄 Restart</button>
+      <button class="ch-close" id="chatCloseBtn">✕</button>
+    </div>
   </div>
   <div id="chatMsgs"></div>
   <div id="qkBtns"></div>
@@ -545,33 +565,126 @@ if (searchToggleBtn) {
 }
 
 var sMap = [
-  {w:['wire','cable','polycab','1mm','1.5mm','2.5mm','4mm','optima'], h:'#products'},
-  {w:['price','list','rate','2026','pdf'], h:'#pricelist'},
-  {w:['switchgear','panel','mcb','mccb','acb'], h:'#products'},
-  {w:['automation','sensor','water','motion','pir'], h:'#products'},
-  {w:['service','consult','contractor','electrician'], h:'#services'},
-  {w:['about','mission','vision','who'], h:'#about'},
-  {w:['career','job','apply','vacancy','hiring'], h:'#careers'},
-  {w:['contact','address','office','phone','email'], h:'#contact'},
-  {w:['faq','question'], h:'#faq'},
-  {w:['client','testimonial','review'], h:'#clients'},
-  {w:['project','installation'], h:'#projects'}
+  {w:['wire','cable','polycab','1mm','1.5mm','2.5mm','4mm','optima','fr wire','frls'], h:'#products', icon:'🔌', label:'Polycab Wires & Cables', desc:'All sizes, FR, FRLS, Optima Plus'},
+  {w:['price','list','rate','2026','pdf','price list','wholesale rate'], h:'#pricelist', icon:'📋', label:'Price List 2026', desc:'Get the latest Polycab price list free'},
+  {w:['switchgear','panel','mcb','mccb','acb','rccb','elcb','breaker','distribution'], h:'#products', icon:'⚙️', label:'Switchgear & Panels', desc:'MCB, MCCB, ACB, control panels'},
+  {w:['automation','sensor','water','motion','pir','plc','vfd','scada','smart','home automation'], h:'#products', icon:'🤖', label:'Automation Products', desc:'Home & industrial automation'},
+  {w:['service','consult','contractor','electrician','wiring','installation'], h:'#services', icon:'🔧', label:'Our Services', desc:'Consulting, contractors, wholesale supply'},
+  {w:['about','mission','vision','who','company'], h:'#about', icon:'🏢', label:'About Us', desc:'Who we are & our expertise'},
+  {w:['career','job','apply','vacancy','hiring','engineer','technician','sales'], h:'#careers', icon:'💼', label:'Careers / Jobs', desc:'Electrical engineer, sales, technician roles'},
+  {w:['contact','address','office','phone','email','reach','location','uluberia','howrah'], h:'#contact', icon:'📍', label:'Contact Us', desc:'Phone, address, WhatsApp'},
+  {w:['faq','question','frequently','asked'], h:'#faq', icon:'❓', label:'FAQ', desc:'Common questions answered'},
+  {w:['client','testimonial','review','feedback'], h:'#clients', icon:'⭐', label:'Clients & Testimonials', desc:'Happy client reviews'},
+  {w:['project','installation','completed','past work','portfolio'], h:'#projects', icon:'🏗️', label:'Our Projects', desc:'Completed projects'},
+  {w:['fan','ceiling fan','exhaust','led','light'], h:'#products', icon:'🌬️', label:'Fans & Lights', desc:'Polycab fans and LED lights'},
+  {w:['referral','refer','earn','reward','cashback','gift'], h:'#contact', icon:'🎁', label:'Referral Offer', desc:'Earn up to ₹1000 by referring'}
 ];
 
+function scoreMatch(item, q) {
+  var words = q.toLowerCase().trim().split(/\s+/);
+  var score = 0;
+  item.w.forEach(function(kw) {
+    words.forEach(function(word) {
+      if (word.length < 2) return;
+      if (kw === word) score += 3;
+      else if (kw.indexOf(word) > -1) score += 2;
+      else if (word.indexOf(kw) > -1) score += 1;
+    });
+  });
+  return score;
+}
+
+function doSearch(q) {
+  var el = document.getElementById('searchResults');
+  if (!q || q.length < 2) { el.style.display = 'none'; return; }
+  var scored = sMap.map(function(item) {
+    return { item: item, score: scoreMatch(item, q) };
+  }).filter(function(x) { return x.score > 0; });
+  scored.sort(function(a, b) { return b.score - a.score; });
+  var seen = {}, results = [];
+  scored.forEach(function(x) {
+    var key = x.item.h + x.item.label;
+    if (!seen[key]) { seen[key] = true; results.push(x.item); }
+  });
+
+  if (results.length === 0) {
+    el.innerHTML = '<div class="sr-none">No results found — try: wire, price, fan, automation, careers…</div>';
+    el.style.display = 'block';
+    return;
+  }
+  var show = results.slice(0, 6);
+  var html = show.map(function(r) {
+    return '<div class="sr-item" data-hash="' + r.h + '">'
+      + '<span class="sr-icon">' + r.icon + '</span>'
+      + '<div><div class="sr-label">' + r.label + '</div><div class="sr-desc">' + r.desc + '</div></div>'
+      + '</div>';
+  }).join('');
+  if (results.length > 1) {
+    html += '<div class="sr-multi-arrow" id="srVisitAll">📌 Highlight all ' + results.length + ' matching sections ↓</div>';
+  }
+  el.innerHTML = html;
+  el.style.display = 'block';
+
+  el.querySelectorAll('.sr-item').forEach(function(item) {
+    item.addEventListener('click', function() { goToSection(item.getAttribute('data-hash')); });
+  });
+
+  var visitAllBtn = document.getElementById('srVisitAll');
+  if (visitAllBtn) {
+    visitAllBtn.addEventListener('click', function() {
+      searchBox.style.display = 'none';
+      el.style.display = 'none';
+      var hashes = results.map(function(r) { return r.h; }).filter(function(h, i, a) { return a.indexOf(h) === i; });
+      hashes.forEach(function(hash, i) {
+        var target = document.querySelector(hash);
+        if (target) {
+          setTimeout(function() {
+            target.classList.remove('section-highlight');
+            void target.offsetWidth;
+            target.classList.add('section-highlight');
+          }, i * 350);
+        }
+      });
+      var first = document.querySelector(hashes[0]);
+      if (first) first.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+}
+
+function goToSection(hash) {
+  searchBox.style.display = 'none';
+  document.getElementById('searchResults').style.display = 'none';
+  searchInput.value = '';
+  var target = document.querySelector(hash);
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    target.classList.remove('section-highlight');
+    void target.offsetWidth;
+    target.classList.add('section-highlight');
+  }
+}
+
 if (searchInput) {
+  searchInput.addEventListener('input', function() { doSearch(searchInput.value); });
   searchInput.addEventListener('keydown', function(e) {
-    if (e.key !== 'Enter') return;
-    var q = searchInput.value.toLowerCase().trim();
-    if (!q) return;
-    searchBox.style.display = 'none';
-    var m = sMap.find(function(x) { return x.w.some(function(w) { return q.indexOf(w) > -1; }); });
-    if (m) {
-      window.location.hash = m.h;
-    } else {
-      window.open('https://www.google.com/search?q=site:ubkfs.github.io+' + encodeURIComponent(q), '_blank');
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      var q = searchInput.value.trim();
+      if (!q) return;
+      var scored = sMap.map(function(item) { return { item: item, score: scoreMatch(item, q) }; })
+        .filter(function(x) { return x.score > 0; }).sort(function(a,b) { return b.score - a.score; });
+      if (scored.length > 0) { goToSection(scored[0].item.h); }
+      else { searchBox.style.display = 'none'; window.open('https://www.google.com/search?q=site:ubkfs.github.io+' + encodeURIComponent(q), '_blank'); }
     }
+    if (e.key === 'Escape') { searchBox.style.display = 'none'; document.getElementById('searchResults').style.display = 'none'; }
   });
 }
+
+document.addEventListener('click', function(e) {
+  if (!searchBox.contains(e.target) && e.target !== searchToggleBtn) {
+    document.getElementById('searchResults').style.display = 'none';
+  }
+});
 
 /* ── Header: Mobile Menu ── */
 var menuToggleBtn = document.getElementById('menuToggleBtn');
@@ -741,38 +854,22 @@ var products = {
   wires: {
     title: 'Polycab Wires & Cables – 1mm, 1.5mm, 2.5mm, 4mm | Price List 2026',
     desc: 'Premium Polycab FR, FRLS and Optima Plus wires available in 90 MTR & 300 MTR coils. ISI marked, BIS certified. Available in Red, Blue, Green, Yellow, Black colours. Suitable for house wiring, industrial wiring and power distribution.',
-    slides: [
-      { emoji: '🔌', label: 'Polycab FR Wire – All Sizes Available' },
-      { emoji: '⚡', label: 'Polycab Optima Plus – Premium FRLS Wire' },
-      { emoji: '🏠', label: 'Ideal for Home & Industrial Wiring' }
-    ]
+    imgs: ['cable1.jpg', 'cable2.jpg']
   },
   switchgear: {
     title: 'Switchgear & Control Panels',
     desc: 'Industrial MCBs, MCCBs, ACBs, RCCBs and custom control panels for residential & industrial use. Available in various ampere ratings. Suitable for main panels, distribution boards and motor control centers.',
-    slides: [
-      { emoji: '⚙️', label: 'MCB / MCCB / ACB – All Ratings' },
-      { emoji: '🏭', label: 'Custom Control Panels – Made to Order' },
-      { emoji: '🔒', label: 'RCCB / ELCB – Safety First' }
-    ]
+    imgs: ['sg.jpg', 'panel.jpg', 'panel2.jpg']
   },
   automation: {
     title: 'Home & Industrial Automation Products',
     desc: 'Water Level Controllers, PIR Motion Detectors, Smart Switches, Sensors & complete Home Automation Kits. Industrial PLC panels, VFD drives, SCADA systems available. Contact us for specifications.',
-    slides: [
-      { emoji: '💧', label: 'Water Level Controller – Auto Cut' },
-      { emoji: '🤖', label: 'PIR Motion Detectors & Sensors' },
-      { emoji: '🏠', label: 'Smart Home Automation Kits' }
-    ]
+    imgs: ['wlc.jpg', 'sensor.jpg']
   },
   components: {
     title: 'Polycab Electrical Components & Accessories',
     desc: 'Complete range of Polycab fans, switches, sockets, conduit pipes and accessories at wholesale prices. Genuine Polycab branded products with manufacturer warranty.',
-    slides: [
-      { emoji: '🌬️', label: 'Polycab Ceiling Fans & Exhaust Fans' },
-      { emoji: '🔧', label: 'Switches, Sockets & Conduit Pipes' },
-      { emoji: '💡', label: 'Polycab LED Lights & Accessories' }
-    ]
+    imgs: ['poly1.jpg', 'poly2.jpg']
   }
 };
 
@@ -780,31 +877,28 @@ function openProduct(type) {
   var p = products[type];
   if (!p) return;
 
-  prodTotal = p.slides.length;
+  prodTotal = p.imgs.length;
   prodIdx = 0;
 
   document.getElementById('productTitle').textContent = p.title;
   document.getElementById('productDesc').textContent = p.desc;
 
-  // Build slides using emoji placeholders (no broken images)
-  var trackHTML = p.slides.map(function(slide, i) {
+  var trackHTML = p.imgs.map(function(img, i) {
     return '<div class="testimonial" style="min-width:100%;">'
-      + '<div style="width:100%;height:280px;border-radius:10px;background:linear-gradient(135deg,#e8eef9,#d0dff7);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;">'
-      + '<span style="font-size:80px;">' + slide.emoji + '</span>'
-      + '<span style="font-size:15px;color:#0b3d91;font-weight:bold;padding:0 20px;text-align:center;">' + slide.label + '</span>'
-      + '</div>'
+      + '<img src="' + img + '" alt="' + p.title + '" style="width:100%;height:280px;border-radius:10px;object-fit:cover;"'
+      + ' onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'
+      + '<div style="display:none;width:100%;height:280px;border-radius:10px;background:linear-gradient(135deg,#e8eef9,#d0dff7);align-items:center;justify-content:center;font-size:60px;">📦</div>'
       + '</div>';
   }).join('');
 
   document.getElementById('productTrack').innerHTML = trackHTML;
   document.getElementById('productTrack').style.transform = 'translateX(0%)';
 
-  var dotsHTML = p.slides.map(function(_, i) {
+  var dotsHTML = p.imgs.map(function(_, i) {
     return '<span class="dot' + (i === 0 ? ' active' : '') + '" data-prod-slide="' + i + '"></span>';
   }).join('');
   document.getElementById('productDots').innerHTML = dotsHTML;
 
-  // Bind dot clicks
   document.querySelectorAll('[data-prod-slide]').forEach(function(dot) {
     dot.addEventListener('click', function() {
       moveProduct(parseInt(dot.getAttribute('data-prod-slide')));
@@ -1121,6 +1215,22 @@ function chatQuick(q) {
   processBotReply(q);
 }
 
+function resetChat() {
+  var msgs = document.getElementById('chatMsgs');
+  var qk = document.getElementById('qkBtns');
+  if (msgs) msgs.innerHTML = '';
+  if (qk) qk.innerHTML = '';
+  waitPhone = false;
+  phoneContext = '';
+  setTimeout(function() {
+    addMsg('👋 Hi again! Welcome back to <b>Indian Automation</b> — Authorized Polycab Dealer in West Bengal!', 'bot');
+    setTimeout(function() {
+      addMsg('I can help you with <b>Polycab wire prices, products, automation, delivery</b> and much more! 😊<br><br>What would you like to know today?', 'bot');
+      setTimeout(function() { showQuickBtns(); }, 300);
+    }, 700);
+  }, 200);
+}
+
 function processBotReply(text) {
   showTyping();
   var delay = Math.min(600 + text.length * 8, 1400);
@@ -1138,11 +1248,27 @@ function processBotReply(text) {
         showQuickBtns();
       }
     } else {
-      addMsg('I\'m not sure about that specific query, but our team knows everything! 😊<br>Please <b>WhatsApp us at 9647150070</b> for an instant answer.', 'bot');
+      // Positive WA referral — no negative language
+      var positiveReplies = [
+        'Great question! Our team can give you the exact answer on WhatsApp right away — just tap below! 💬',
+        'Our experts have the perfect answer for this! Connect on WhatsApp for an instant reply 👇',
+        'For the most accurate details on this, our team is standing by on WhatsApp — reach out now! 😊'
+      ];
+      var reply = positiveReplies[Math.floor(Math.random() * positiveReplies.length)];
+      addMsg(reply, 'bot');
       setTimeout(function() {
-        addMsg('You can also ask me about: <b>Polycab prices, wire sizes, automation, delivery, careers, referral offers</b> and much more!', 'bot');
-        showQuickBtns();
-      }, 600);
+        var d = document.createElement('div');
+        d.className = 'pf';
+        d.style.marginTop = '4px';
+        d.innerHTML = '<p>💬 Chat directly with our team for an instant answer!</p>'
+          + '<button id="directWABtn" style="background:#25D366;color:#fff;border:none;padding:10px 14px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:bold;width:100%;">💬 WhatsApp Us Now — 9647150070</button>';
+        document.getElementById('chatMsgs').appendChild(d);
+        document.getElementById('directWABtn').addEventListener('click', function() {
+          waOpen('Hi! I have a question: ' + text);
+        });
+        scrollMsgs();
+        setTimeout(showQuickBtns, 300);
+      }, 500);
     }
   }, delay);
 }
@@ -1173,6 +1299,7 @@ function toggleChat() {
 // Chat buttons
 document.getElementById('chatBtn').addEventListener('click', toggleChat);
 document.getElementById('chatCloseBtn').addEventListener('click', toggleChat);
+document.getElementById('chatRestartBtn').addEventListener('click', resetChat);
 
 document.getElementById('chatSendBtn').addEventListener('click', function() {
   var inp = document.getElementById('chatInput');

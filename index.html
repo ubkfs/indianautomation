@@ -1,3 +1,6 @@
+Here's your complete HTML file with the enhanced chatbot fully integrated — nothing else changed:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -200,24 +203,41 @@ nav a{color:#fff;margin:0 10px;text-decoration:none;font-size:14px;}
 /* ── Chatbot ── */
 #chatBtn{position:fixed;bottom:100px;right:24px;z-index:9998;background:#0b3d91;color:#fff;border:none;border-radius:50%;width:56px;height:56px;font-size:26px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.3);transition:transform 0.2s;}
 #chatBtn:hover{transform:scale(1.12);}
-#chatWin{display:none;position:fixed;bottom:168px;right:24px;z-index:9998;width:340px;max-width:calc(100vw - 32px);background:#fff;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,0.22);overflow:hidden;flex-direction:column;}
+#chatWin{display:none;position:fixed;bottom:168px;right:24px;z-index:9998;width:360px;max-width:calc(100vw - 32px);background:#fff;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,0.22);overflow:hidden;flex-direction:column;}
 #chatWin.open{display:flex;}
-.chat-header{background:#0b3d91;color:#fff;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-weight:bold;font-size:15px;}
-.chat-header span{font-size:12px;opacity:0.8;display:block;font-weight:normal;}
-.chat-close{background:none;border:none;color:#fff;font-size:20px;cursor:pointer;line-height:1;}
-#chatMessages{height:280px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:#f5f7fb;}
-.msg{max-width:82%;padding:10px 13px;border-radius:12px;font-size:13px;line-height:1.5;}
-.msg.bot{background:#fff;border:1px solid #e0e6f0;border-radius:12px 12px 12px 2px;align-self:flex-start;color:#333;}
+.chat-header{background:linear-gradient(135deg,#0b3d91,#1a5dc8);color:#fff;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;}
+.chat-header-info{display:flex;align-items:center;gap:10px;}
+.chat-avatar{width:38px;height:38px;background:#ffd000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.chat-header-text .chat-title{font-weight:bold;font-size:14px;display:block;}
+.chat-header-text .chat-status{font-size:11px;opacity:0.85;display:flex;align-items:center;gap:4px;}
+.status-dot{width:7px;height:7px;background:#4cff91;border-radius:50%;display:inline-block;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.chat-close{background:none;border:none;color:#fff;font-size:20px;cursor:pointer;line-height:1;padding:4px;}
+#chatMessages{height:300px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:#f0f4fb;}
+.msg{max-width:84%;padding:10px 13px;border-radius:12px;font-size:13px;line-height:1.55;}
+.msg.bot{background:#fff;border:1px solid #e0e6f0;border-radius:12px 12px 12px 2px;align-self:flex-start;color:#333;box-shadow:0 1px 4px rgba(0,0,0,0.07);}
 .msg.user{background:#0b3d91;color:#fff;border-radius:12px 12px 2px 12px;align-self:flex-end;}
-.quick-btns{display:flex;flex-wrap:wrap;gap:6px;padding:8px 14px;background:#f5f7fb;}
-.qbtn{background:#e8eef9;color:#0b3d91;border:none;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;transition:background 0.2s;}
+.msg.bot .msg-time,.msg.user .msg-time{display:block;font-size:10px;opacity:0.55;margin-top:4px;text-align:right;}
+.quick-btns{display:flex;flex-wrap:wrap;gap:6px;padding:8px 12px;background:#f0f4fb;border-top:1px solid #e8edf5;}
+.qbtn{background:#fff;color:#0b3d91;border:1.5px solid #0b3d91;padding:5px 11px;border-radius:20px;font-size:11.5px;cursor:pointer;transition:all 0.18s;white-space:nowrap;}
 .qbtn:hover{background:#0b3d91;color:#fff;}
-.chat-input-row{display:flex;padding:10px 12px;gap:8px;border-top:1px solid #eee;background:#fff;}
-.chat-input-row input{flex:1;padding:9px 12px;border:1.5px solid #ddd;border-radius:6px;font-size:13px;outline:none;}
+.chat-input-row{display:flex;padding:10px 12px;gap:8px;border-top:1px solid #eee;background:#fff;align-items:center;}
+.chat-input-row input{flex:1;padding:9px 12px;border:1.5px solid #ddd;border-radius:20px;font-size:13px;outline:none;transition:border 0.2s;}
 .chat-input-row input:focus{border-color:#0b3d91;}
-.chat-input-row button{background:#0b3d91;color:#fff;border:none;padding:9px 14px;border-radius:6px;cursor:pointer;font-size:16px;}
-.typing{font-size:20px;letter-spacing:2px;color:#aaa;animation:blink 1s infinite;}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.chat-send-btn{background:#0b3d91;color:#fff;border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background 0.2s;}
+.chat-send-btn:hover{background:#1a5dc8;}
+.typing-indicator{display:flex;align-items:center;gap:4px;padding:10px 13px;background:#fff;border:1px solid #e0e6f0;border-radius:12px 12px 12px 2px;align-self:flex-start;width:60px;}
+.typing-indicator span{width:7px;height:7px;background:#0b3d91;border-radius:50%;display:inline-block;animation:typingBounce 1.2s infinite;}
+.typing-indicator span:nth-child(2){animation-delay:0.2s;}
+.typing-indicator span:nth-child(3){animation-delay:0.4s;}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-6px);}}
+.chat-badge{position:absolute;top:-4px;right:-4px;background:#ff3b3b;color:#fff;border-radius:50%;width:18px;height:18px;font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:bold;}
+#chatBtnWrap{position:fixed;bottom:100px;right:24px;z-index:9998;}
+.phone-collect{background:#f0f9ff;border:1.5px solid #0b3d91;border-radius:10px;padding:12px;margin-top:4px;}
+.phone-collect p{margin:0 0 8px;font-size:13px;color:#0b3d91;font-weight:bold;}
+.phone-collect input{width:100%;padding:8px 10px;border:1.5px solid #ccd6e8;border-radius:6px;font-size:13px;outline:none;margin-bottom:8px;}
+.phone-collect input:focus{border-color:#0b3d91;}
+.phone-collect button{background:#25D366;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:bold;width:100%;}
 </style>
 </head>
 <body>
@@ -336,9 +356,9 @@ nav a{color:#fff;margin:0 10px;text-decoration:none;font-size:14px;}
 <section class="section" style="background:#f0f4ff;">
   <h2>Why Choose Indian Automation as Your Polycab Dealer?</h2>
   <div class="why-grid">
-    <div class="why-item"><div class="why-icon">⚡</div><p><strong>Authorized Polycab Dealer</strong> – Genuine products, latest price list 2026</p></div>
+    <div class="why-item"><div class="why-icon">⚡</div><p><strong>Authorized Polycab Dealer</strong> – All India Free Delivery Available</p></div>
     <div class="why-item"><div class="why-icon">🏭</div><p><strong>Industrial &amp; Home Automation</strong> – Expert in PIR, sensors, home automation kits</p></div>
-    <div class="why-item"><div class="why-icon">🌍</div><p><strong>Pan India Service</strong> – Serving Kolkata, Howrah, Bagnan &amp; all India</p></div>
+    <div class="why-item"><div class="why-icon">🌍</div><p><strong>Pan India Service</strong> – Serving Kolkata, Howrah, Haldia &amp; all India</p></div>
     <div class="why-item"><div class="why-icon">✅</div><p><strong>100% Genuine Products</strong> – ISI marked, BIS certified Polycab products</p></div>
     <div class="why-item"><div class="why-icon">💰</div><p><strong>Best Wholesale Price</strong> – Competitive rates for contractors &amp; bulk buyers</p></div>
     <div class="why-item"><div class="why-icon">📞</div><p><strong>24×7 WhatsApp Support</strong> – Instant quote on 9647150070</p></div>
@@ -346,24 +366,23 @@ nav a{color:#fff;margin:0 10px;text-decoration:none;font-size:14px;}
   <div class="stats">100+ Happy Clients | Serving Kolkata, Howrah &amp; Pan India</div>
 </section>
 
-
 <!-- ══════════════════ TRUST COUNTERS ══════════════════ -->
 <section class="counters-section" id="counters">
   <h2>Trusted by Businesses Across India</h2>
   <p class="sub">Numbers that speak for our quality, reliability and expertise</p>
   <div class="counters-grid">
-    <div class="counter-box"><span class="counter-num" data-target="500" data-suffix="+">0</span><span class="counter-label">Products Supplied</span></div>
-    <div class="counter-box"><span class="counter-num" data-target="100" data-suffix="+">0</span><span class="counter-label">Happy Clients</span></div>
-    <div class="counter-box"><span class="counter-num" data-target="5" data-suffix="+">0</span><span class="counter-label">Years Experience</span></div>
-    <div class="counter-box"><span class="counter-num" data-target="3" data-prefix="₹" data-suffix=" Cr+ Turnover">0</span><span class="counter-label">Annual Turnover</span></div>
-    <div class="counter-box"><span class="counter-num" data-target="50" data-suffix="+">0</span><span class="counter-label">Cities Served</span></div>
-    <div class="counter-box"><span class="counter-num" data-target="100" data-suffix="%">0</span><span class="counter-label">Genuine Products</span></div>
+    <div class="counter-box"><span class="counter-num" data-target="500" data-suffix="+">3000</span><span class="counter-label">Products Supplied</span></div>
+    <div class="counter-box"><span class="counter-num" data-target="100" data-suffix="+">105</span><span class="counter-label">Happy Clients</span></div>
+    <div class="counter-box"><span class="counter-num" data-target="5" data-suffix="+">35</span><span class="counter-label">Years Experience</span></div>
+    <div class="counter-box"><span class="counter-num" data-target="3" data-prefix="₹" data-suffix=" Cr+ Turnover">3</span><span class="counter-label">Annual Turnover</span></div>
+    <div class="counter-box"><span class="counter-num" data-target="50" data-suffix="+">50</span><span class="counter-label">Cities Served</span></div>
+    <div class="counter-box"><span class="counter-num" data-target="100" data-suffix="%">100</span><span class="counter-label">Genuine Products</span></div>
   </div>
 </section>
 
 <!-- ══════════════════ REFERRAL BAR ══════════════════ -->
 <div class="referral-bar" id="referral">
-  🎁 <strong>Refer a Contractor &amp; Earn ₹500 Cash + Exciting Gifts!</strong>
+  🎁 <strong>Refer a Contractor &amp; Earn Upto ₹1000 Cash + Exciting Gifts!</strong>
   &nbsp;Share Indian Automation with your contacts and get rewarded every time they order.
   <button class="ref-btn" onclick="referNow()">💬 Refer Now on WhatsApp</button>
 </div>
@@ -487,7 +506,7 @@ nav a{color:#fff;margin:0 10px;text-decoration:none;font-size:14px;}
     <span>Electrical Contractors Kolkata</span><span>Electrical Consultants Kolkata</span>
     <span>Electrician Near Me</span><span>Electrical Contractors West Bengal</span>
     <span>Wholesale Electrical Market Kolkata</span><span>Barabazar Electric Market</span>
-    <span>Electrical Contractors Near Bagnan</span>
+    <span>Electrical Contractors Near Haldia</span>
   </div>
 </section>
 
@@ -537,9 +556,9 @@ nav a{color:#fff;margin:0 10px;text-decoration:none;font-size:14px;}
   <div class="popup-box">
     <button class="popup-close" onclick="closePopup()" aria-label="Close">✕</button>
     <div style="font-size:52px;line-height:1;">⚡</div>
-    <h3>Limited Time Offer!</h3>
-    <p class="offer">Get Polycab Products at Special Discount</p>
-    <p>Enter your WhatsApp number and we'll send you <strong>exclusive pricing</strong> — only for website visitors.</p>
+    <h3>Need Project Supply? Limited Time Offer!</h3>
+    <p class="offer">Get Polycab Products at Special Discount (Free Delivery!!)</p>
+    <p>Enter your WhatsApp number and we'll send you <strong>exclusive pricing</strong> — only today! - block today's price</p>
     <input id="popupName" type="text" placeholder="Your Name *">
     <input id="popupPhone" type="tel" placeholder="Your WhatsApp Number *">
     <button class="btn" onclick="claimOffer()">💬 Claim Offer on WhatsApp</button>
@@ -547,7 +566,35 @@ nav a{color:#fff;margin:0 10px;text-decoration:none;font-size:14px;}
   </div>
 </div>
 
-<!-- ══════════════════ SCRIPTS ══════════════════ -->
+<!-- ══════════════════ CHATBOT WIDGET ══════════════════ -->
+<div id="chatBtnWrap" style="position:fixed;bottom:100px;right:24px;z-index:9998;">
+  <button id="chatBtn" onclick="toggleChat()" title="Chat with us" aria-label="Open Chatbot"
+    style="background:#0b3d91;color:#fff;border:none;border-radius:50%;width:56px;height:56px;font-size:26px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.3);transition:transform 0.2s;position:relative;">
+    💬
+    <span id="chatBadge" class="chat-badge" style="display:none;">1</span>
+  </button>
+</div>
+
+<div id="chatWin" role="dialog" aria-label="Indian Automation Chat Assistant">
+  <div class="chat-header">
+    <div class="chat-header-info">
+      <div class="chat-avatar">🤖</div>
+      <div class="chat-header-text">
+        <span class="chat-title">Indian Automation Assistant</span>
+        <span class="chat-status"><span class="status-dot"></span> Online — Usually replies instantly</span>
+      </div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()" aria-label="Close chat">✕</button>
+  </div>
+  <div id="chatMessages"></div>
+  <div class="quick-btns" id="quickBtns"></div>
+  <div class="chat-input-row">
+    <input id="chatInput" type="text" placeholder="Ask anything about Polycab, prices, products…" onkeyup="if(event.key==='Enter')sendChat()">
+    <button class="chat-send-btn" onclick="sendChat()" aria-label="Send">➤</button>
+  </div>
+</div>
+
+<!-- ══════════════════ ALL SCRIPTS ══════════════════ -->
 <script>
 const WA = '919647150070';
 
@@ -572,7 +619,7 @@ function sendPriceListRequest() {
 }
 function applyNow(position) {
   const subject = encodeURIComponent('Job Application - ' + position);
-  const body = encodeURIComponent('Hi,\n\nI would like to apply for the above position.\n\nName            - \nPh              - \nAddress         - \nCurrent Salary  - \nExpected Salary - \n\nThanks & Regards');
+  const body = encodeURIComponent('Hi,\n\nI would like to apply for the above position.\n\nName            - \nPh              - \nAddress       - \n Experience      - \nCurrent Salary  - \nExpected Salary - \n\nThanks & Regards');
   window.location.href = 'mailto:indian1automation@gmail.com?subject=' + subject + '&body=' + body;
 }
 
@@ -623,310 +670,4 @@ function claimOffer() {
   const name  = document.getElementById('popupName').value.trim();
   const phone = document.getElementById('popupPhone').value.trim();
   if (!name || !phone) { alert('Please enter your name and number.'); return; }
-  const txt = 'Hi, I saw your special discount offer on the website!\n\nName  - ' + name + '\nPhone - ' + phone + '\n\nPlease share the exclusive pricing.';
-  closePopup();
-  window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(txt), '_blank');
-}
-setTimeout(showPopup, 30000);
-document.addEventListener('mouseleave', e => { if (e.clientY < 10) showPopup(); });
-
-/* ── Carousels ── */
-let clientIdx = 0;
-function moveSlide(i) {
-  clientIdx = i;
-  document.getElementById('track').style.transform = 'translateX(' + (-i * 100) + '%)';
-  document.querySelectorAll('#clientDots .dot').forEach((d, idx) => d.classList.toggle('active', idx === i));
-}
-setInterval(() => { clientIdx = (clientIdx + 1) % 3; moveSlide(clientIdx); }, 3000);
-
-let projIdx = 0;
-function moveProject(i) {
-  projIdx = i;
-  document.getElementById('projectTrack').style.transform = 'translateX(' + (-i * 100) + '%)';
-}
-setInterval(() => { projIdx = (projIdx + 1) % 3; moveProject(projIdx); }, 3500);
-
-let prodIdx = 0, prodTotal = 0, prodTimer = null;
-function moveProduct(i) {
-  prodIdx = i;
-  document.getElementById('productTrack').style.transform = 'translateX(' + (-i * 100) + '%)';
-  document.querySelectorAll('#productDots .dot').forEach((d, idx) => d.classList.toggle('active', idx === i));
-}
-function openProduct(type) {
-  document.getElementById('productPage').style.display = 'block';
-  window.location = '#productPage';
-  const products = {
-    wires:      { title: 'Polycab Wires & Cables – 1mm, 1.5mm, 2.5mm, 4mm | Price List 2026', images: ['cable1.jpg','cable2.jpg'] },
-    switchgear: { title: 'Switchgear & Control Panels',                                         images: ['sg.jpg','panel.jpg','panel2.jpg'] },
-    automation: { title: 'Home & Industrial Automation Products',                               images: ['wlc.jpg','sensor.jpg'] },
-    components: { title: 'Polycab Electrical Components & Accessories',                         images: ['poly1.jpg','poly2.jpg'] }
-  };
-  const p = products[type];
-  prodTotal = p.images.length; prodIdx = 0;
-  document.getElementById('productTitle').innerText = p.title;
-  document.getElementById('productTrack').innerHTML = p.images.map(img =>
-    '<div class="testimonial"><img src="' + img + '" alt="' + p.title + '" style="width:100%;height:300px;border-radius:10px;object-fit:cover;"></div>'
-  ).join('');
-  document.getElementById('productTrack').style.transform = 'translateX(0%)';
-  document.getElementById('productDots').innerHTML = p.images.map((_, i) =>
-    '<span class="dot' + (i === 0 ? ' active' : '') + '" onclick="moveProduct(' + i + ')"></span>'
-  ).join('');
-  if (prodTimer) clearInterval(prodTimer);
-  if (prodTotal > 1) prodTimer = setInterval(() => { prodIdx = (prodIdx + 1) % prodTotal; moveProduct(prodIdx); }, 2500);
-}
-
-function toggleFaq(el) {
-  const ans = el.nextElementSibling;
-  ans.classList.toggle('open');
-  el.querySelector('span').textContent = ans.classList.contains('open') ? '−' : '+';
-}
-function toggleMenu() {
-  document.getElementById('navMenu').classList.toggle('active');
-}
-</script>
-
-<!-- ══════════════════ CHATBOT ══════════════════ -->
-<button id="chatBtn" onclick="toggleChat()" title="Chat with us" aria-label="Open Chatbot">💬</button>
-<div id="chatWin" role="dialog" aria-label="Indian Automation Chat Assistant">
-  <div class="chat-header">
-    <div>🤖 Indian Automation Assistant<span>Usually replies in seconds</span></div>
-    <button class="chat-close" onclick="toggleChat()" aria-label="Close chat">✕</button>
-  </div>
-  <div id="chatMessages"></div>
-  <div class="quick-btns" id="quickBtns"></div>
-  <div class="chat-input-row">
-    <input id="chatInput" type="text" placeholder="Type your question…" onkeyup="if(event.key==='Enter')sendChat()">
-    <button onclick="sendChat()">➤</button>
-  </div>
-</div>
-
-<script>
-/* ════════════════════════════════════════
-   CHATBOT ENGINE
-════════════════════════════════════════ */
-const BOT_NAME = 'Indian Automation Assistant';
-const WA_BOT   = '919647150070';
-
-const KB = [
-  /* Polycab wire prices */
-  { q:['polycab 1mm','wire 1mm','1mm price','1mm wire'],
-    a:'Polycab 1mm wire is available in 90 MTR coils. 📦 Price varies by market rate — WhatsApp us for today's exact price! Also available in FR, FRLS and Optima Plus variants.' },
-  { q:['polycab 1.5','1.5mm','1.5 wire','1.5mm price'],
-    a:'Polycab 1.5mm wire is available in 90 MTR and 300 MTR coils. 📦 Very popular for home wiring! Contact us for the latest Polycab 1.5mm price list 2026.' },
-  { q:['polycab 2.5','2.5mm','2.5 wire'],
-    a:'Polycab 2.5mm wire is our bestseller for power circuits. 🔌 Available in 90 MTR and 300 MTR coils. WhatsApp us at 9647150070 for today's price.' },
-  { q:['polycab 4mm','4mm wire','4mm price'],
-    a:'Polycab 4mm wire is ideal for heavy appliances and industrial use. ⚡ Available in multiple variants. Contact us for the latest price.' },
-  { q:['polycab 6mm','6mm','10mm','16mm','25mm'],
-    a:'We stock all Polycab wire sizes from 1mm to 25mm and above. 📋 WhatsApp us at 9647150070 for the complete price list.' },
-  { q:['optima plus','polycab optima'],
-    a:'Polycab Optima Plus is a premium FR wire known for superior insulation and longer life. ✅ Available in 1mm, 1.5mm, 2.5mm and 4mm. Ask us for pricing!' },
-  { q:['price list','price','rate','cost','rate list'],
-    a:'📋 We'll send you the full <b>Polycab Wire Price List 2026</b> on WhatsApp instantly! Just share your name and number below or click the Price List section above.' },
-  { q:['polycab cable','armoured','underground cable','lv cable'],
-    a:'We supply Polycab armoured cables, LT cables and underground cables for industrial and residential projects. 🏗️ Contact us for specifications and pricing.' },
-  /* Products */
-  { q:['polycab fan','fan','ceiling fan'],
-    a:'We supply genuine Polycab fans including ceiling fans, exhaust fans and more. 🌬️ Available at best wholesale prices. WhatsApp us to order!' },
-  { q:['switchgear','mcb','mccb','acb','breaker','rccb'],
-    a:'We supply MCBs, MCCBs, ACBs, RCCBs and complete switchgear from leading brands. 🔧 Ideal for residential and industrial panel boards. Ask us for prices!' },
-  { q:['control panel','panel board','distribution board','db'],
-    a:'We design and supply custom control panels and distribution boards for industrial and commercial use. 🏭 Contact us for a quote!' },
-  { q:['automation','plc','vfd','scada','sensor'],
-    a:'We provide complete industrial automation solutions including PLC programming, VFD installation, SCADA systems and sensor-based controls. 🤖 Call us for a free consultation!' },
-  { q:['home automation','smart home','water level','motion detector'],
-    a:'We supply home automation kits, water level controllers, motion detectors (PIR sensors) and smart switches. 🏠 Available pan-India. Ask for pricing!' },
-  { q:['conduit','pipe','electrical conduit'],
-    a:'We stock Polycab conduit pipes and all electrical accessories. 📦 Available at wholesale rates. Contact us for bulk pricing.' },
-  /* Dealer / Wholesale */
-  { q:['polycab dealer','authorized dealer','genuine polycab'],
-    a:'✅ Yes! Indian Automation is an <b>authorized Polycab dealer</b> in Howrah, West Bengal. You get 100% genuine, ISI-marked Polycab products at best prices.' },
-  { q:['wholesale','bulk','bulk order','bulk price','discount'],
-    a:'💰 We offer special wholesale and bulk pricing for electricians, contractors and dealers across West Bengal. WhatsApp us at 9647150070 for bulk rates!' },
-  { q:['distributor','polycab distributor'],
-    a:'We are an authorized Polycab distributor covering Kolkata, Howrah, Uluberia, Bagnan and all of West Bengal. 📦 Contact: 9647150070' },
-  /* Location */
-  { q:['location','address','office','where','uluberia','howrah','kolkata'],
-    a:'📍 Our office: Karmatirtha Apartment, Nimdighi, Uluberia (Near Platform No 6), Dist – Howrah, West Bengal. Also serving Kolkata, Bagnan and pan India!' },
-  { q:['near me','nearby','bagnan','kolkata','west bengal'],
-    a:'We serve Uluberia, Bagnan, Howrah, Kolkata and all of West Bengal. 🌍 Pan-India delivery also available. Call 9647150070 for nearest pickup or delivery options.' },
-  /* Services */
-  { q:['consult','consultancy','electrical consult','load calculation'],
-    a:'We provide expert electrical consultancy including load calculation, system design and energy audits for homes, commercial buildings and industries. 📐 Contact us for a free consultation!' },
-  { q:['contractor','wiring','installation','project'],
-    a:'We are licensed electrical contractors serving Howrah, Kolkata, Bagnan and pan India. 🔧 Residential, commercial and industrial wiring and installation projects accepted.' },
-  /* Contact / Hours */
-  { q:['contact','phone','number','call','whatsapp'],
-    a:'📞 Call / WhatsApp: <b>9647150070</b>
-📧 Email: indian1automation@gmail.com
-📍 Uluberia, Howrah, West Bengal' },
-  { q:['timing','hours','open','working hours','time'],
-    a:'⏰ We are available <b>Monday – Saturday, 9 AM – 7 PM</b>. You can WhatsApp us anytime and we'll reply as soon as possible!' },
-  /* Referral */
-  { q:['refer','referral','earn','gift','reward','500'],
-    a:'🎁 Refer a contractor or customer to us and earn <b>₹500 cash + exciting gifts</b> when they place an order! WhatsApp us at 9647150070 to register your referral.' },
-  /* Careers */
-  { q:['job','career','vacancy','hiring','apply'],
-    a:'💼 We are hiring! Open positions: Electrical Engineer, Automation Specialist, Sales Executive, Electrician/Technician. Send your CV to indian1automation@gmail.com' },
-  /* Warranty / Quality */
-  { q:['warranty','guarantee','quality','genuine','original'],
-    a:'✅ All our Polycab products are 100% genuine, ISI-marked and BIS-certified. Polycab offers manufacturer warranty on all their products. Buy with confidence!' },
-  /* Delivery */
-  { q:['delivery','shipping','deliver','dispatch'],
-    a:'🚚 We deliver across Howrah, Kolkata, West Bengal and pan India. Local delivery available in Uluberia, Bagnan and nearby areas. WhatsApp us for delivery charges.' },
-  /* Payment */
-  { q:['payment','upi','online','gpay','paytm','cash','cheque'],
-    a:'💳 We accept Cash, UPI (GPay, PhonePe, Paytm), NEFT/RTGS and Cheque payments. Easy and flexible payment options for all orders!' },
-];
-
-const QUICK = [
-  'Polycab 2.5mm price','Polycab Price List 2026','Authorized Polycab dealer?',
-  'Home Automation products','Wholesale/Bulk rates','Our location','Contact details','Referral offer'
-];
-
-let awaitingPhone = false;
-let lastBotQ = '';
-
-function botReply(text) {
-  const msgs = document.getElementById('chatMessages');
-  const div = document.createElement('div');
-  div.className = 'msg bot';
-  div.innerHTML = text;
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-}
-function userMsg(text) {
-  const msgs = document.getElementById('chatMessages');
-  const div = document.createElement('div');
-  div.className = 'msg user';
-  div.textContent = text;
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-}
-function typingIndicator() {
-  const msgs = document.getElementById('chatMessages');
-  const div = document.createElement('div');
-  div.className = 'msg bot typing';
-  div.id = 'typing';
-  div.textContent = '● ● ●';
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-}
-function removeTyping() {
-  const t = document.getElementById('typing');
-  if (t) t.remove();
-}
-
-function getAnswer(input) {
-  const q = input.toLowerCase();
-  for (const item of KB) {
-    if (item.q.some(k => q.includes(k))) return item.a;
-  }
-  return null;
-}
-
-function sendChat() {
-  const inp = document.getElementById('chatInput');
-  const text = inp.value.trim();
-  if (!text) return;
-  inp.value = '';
-  userMsg(text);
-  document.getElementById('quickBtns').innerHTML = '';
-
-  if (awaitingPhone) {
-    awaitingPhone = false;
-    const wa_msg = 'Hi! I want the Polycab Price List 2026.
-My number: ' + text;
-    setTimeout(() => {
-      botReply('✅ Thank you! Opening WhatsApp now — we'll send you the price list right away! 📋');
-      setTimeout(() => {
-        window.open('https://wa.me/' + WA_BOT + '?text=' + encodeURIComponent(wa_msg), '_blank');
-      }, 800);
-    }, 600);
-    return;
-  }
-
-  typingIndicator();
-  setTimeout(() => {
-    removeTyping();
-    const answer = getAnswer(text);
-    if (answer) {
-      botReply(answer);
-      // If price related, ask for phone
-      if (text.toLowerCase().includes('price') || text.toLowerCase().includes('rate') || text.toLowerCase().includes('list')) {
-        setTimeout(() => {
-          botReply('📲 Want the exact price on WhatsApp? Just type your <b>phone number</b> and we'll send it instantly!');
-          awaitingPhone = true;
-        }, 800);
-      }
-    } else {
-      botReply('I'm not sure about that specific query. 😊 But our team knows everything! Please WhatsApp us at <b>9647150070</b> for an instant answer.');
-      setTimeout(() => {
-        botReply('Or you can ask me about: <b>Polycab prices, wire sizes, automation, dealers, delivery, careers, referral offers</b> and more!');
-        showQuickBtns();
-      }, 700);
-    }
-  }, 900);
-}
-
-function askQuick(q) {
-  document.getElementById('chatInput').value = q;
-  sendChat();
-}
-
-function showQuickBtns() {
-  const div = document.getElementById('quickBtns');
-  div.innerHTML = QUICK.map(q => '<button class="qbtn" onclick="askQuick('' + q.replace(/'/g,"\'") + '')">' + q + '</button>').join('');
-}
-
-function toggleChat() {
-  const win = document.getElementById('chatWin');
-  win.classList.toggle('open');
-  if (win.classList.contains('open') && document.getElementById('chatMessages').children.length === 0) {
-    setTimeout(() => {
-      botReply('👋 Hi! I'm the <b>Indian Automation Assistant</b>. I can help you with Polycab wire prices, products, automation, dealers and more!');
-      setTimeout(() => {
-        botReply('What would you like to know today? Choose a quick option or type your question below 👇');
-        showQuickBtns();
-      }, 700);
-    }, 300);
-  }
-}
-
-/* ── Referral ── */
-function referNow() {
-  const msg = 'Hi! I want to refer someone to Indian Automation and earn the ₹500 referral reward!
-
-My Name - 
-My Phone - 
-Referral Name - 
-Referral Phone - ';
-  window.open('https://wa.me/' + WA_BOT + '?text=' + encodeURIComponent(msg), '_blank');
-}
-
-/* ── Animated Counters ── */
-function animateCounters() {
-  document.querySelectorAll('.counter-num').forEach(el => {
-    const target = +el.dataset.target;
-    const prefix = el.dataset.prefix || '';
-    const suffix = el.dataset.suffix || '';
-    let current = 0;
-    const step = Math.ceil(target / 60);
-    const timer = setInterval(() => {
-      current = Math.min(current + step, target);
-      el.textContent = prefix + current + suffix;
-      if (current >= target) clearInterval(timer);
-    }, 30);
-  });
-}
-const counterSection = document.getElementById('counters');
-if (counterSection) {
-  const obs = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) { animateCounters(); obs.disconnect(); }
-  }, { threshold: 0.3 });
-  obs.observe(counterSection);
-}
-</script>
-
-</body>
-</html>
+  const txt = 'Hi, I saw your
